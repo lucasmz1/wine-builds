@@ -1,0 +1,34 @@
+name: Wine Stable CI
+
+on:
+  schedule:
+    - cron:  '0 0 */12 * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Build Wine
+        run: |
+          sudo apt update
+          sudo apt install debootstrap perl git wget xz-utils bubblewrap autoconf
+          sudo tar -C /opt -xpf /opt/Bootstraps/bootstraps.tar.xz
+          chmod +x build_wine.sh
+          export WINE_VERSION="$(wget -q -O - "https://gitlab.winehq.org/wine/wine/-/raw/stable/VERSION" | tail -c +14)"
+          WINE_BRANCH=vanilla ./build_wine.sh
+          sha256sum *.tar.xz
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Wine Stable
+          path: ./*.tar.xz
+
+      - name: Build release
+        uses: marvinpinto/action-automatic-releases@6273874b61ebc8c71f1a61b2d98e234cf389b303
+        with:
+          title: wine-builds stable
+          automatic_release_tag: stable
+          prerelease: false
+          draft: false
+          files: ./*.tar.xz
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
