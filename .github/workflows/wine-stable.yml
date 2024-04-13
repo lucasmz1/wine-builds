@@ -33,7 +33,7 @@ jobs:
       - name: Prerequisites
         run: |
           sudo apt update
-          sudo apt install debootstrap perl git wget xz-utils bubblewrap autoconf
+          sudo apt install debootstrap schroot perl git wget xz-utils bubblewrap autoconf
           chmod +x build_wine.sh
           export WINE_VERSION="$(wget -q -O - "https://gitlab.winehq.org/wine/wine/-/raw/stable/VERSION" | tail -c +14)"
           WINE_BRANCH=vanilla ./build_wine.sh
