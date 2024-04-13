@@ -14,6 +14,7 @@ jobs:
         run: |
           sudo apt update
           sudo apt install debootstrap perl git wget xz-utils bubblewrap autoconf
+          find -iname 'build_wine**' | xargs -i -t -exec cp {} .
           chmod +x build_wine.sh
           export WINE_VERSION="$(wget -q -O - "https://gitlab.winehq.org/wine/wine/-/raw/stable/VERSION" | tail -c +14)"
           WINE_BRANCH=vanilla ./build_wine.sh
