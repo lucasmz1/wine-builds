@@ -1,8 +1,6 @@
-name: Wine Stable CI
+name: Wine Stable
 
 on:
-  schedule:
-    - cron:  '0 0 */6 * *'
   workflow_dispatch:
 
 jobs:
@@ -10,11 +8,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v3
       - name: Download artifact
         id: download-artifact
-        uses: dawidd6/action-download-artifact@v3
+        uses: dawidd6/action-download-artifact@v2
         with:
           workflow: bootstraps.yml
+          workflow_conclusion: success
           path: /opt
       - name: Build Wine
         run: |
@@ -29,13 +29,3 @@ jobs:
         with:
           name: Wine Stable
           path: ./*.tar.xz
-
-      - name: Build release
-        uses: marvinpinto/action-automatic-releases@6273874b61ebc8c71f1a61b2d98e234cf389b303
-        with:
-          title: wine-builds stable
-          automatic_release_tag: stable
-          prerelease: false
-          draft: false
-          files: ./*.tar.xz
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
