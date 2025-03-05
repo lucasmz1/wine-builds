@@ -36,6 +36,7 @@ jobs:
           sudo apt install debootstrap schroot perl git wget xz-utils bubblewrap autoconf
           chmod +x create_ubuntu_bootstraps.sh
           sudo ./create_ubuntu_bootstraps.sh
+          sudo sysctl -w kernel.unprivileged_userns_clone=1
           chmod +x build_wine.sh
           export WINE_VERSION="$(wget -q -O - "https://gitlab.winehq.org/wine/wine/-/raw/stable/VERSION" | tail -c +14)"
           WINE_BRANCH=vanilla ./build_wine.sh
