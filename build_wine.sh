@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+set -eux
 ########################################################################
 ##
 ## A script for Wine compilation.
