@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+set -eux
 ## A script for creating Ubuntu bootstraps for Wine compilation.
 ##
 ## debootstrap and perl are required
