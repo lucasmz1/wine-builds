@@ -79,6 +79,9 @@ create_build_scripts () {
 
 apt-get update
 apt-get -y install nano
+apt-get -y install apparmor-profiles
+ln -s /usr/share/apparmor/extra-profiles/bwrap-userns-restrict /etc/apparmor.d/
+sysctl -w kernel.unprivileged_userns_clone=1
 apt-get -y install locales
 echo ru_RU.UTF_8 UTF-8 >> /etc/locale.gen
 echo en_US.UTF_8 UTF-8 >> /etc/locale.gen
