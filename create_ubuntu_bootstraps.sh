@@ -100,12 +100,12 @@ add-apt-repository -y ppa:ubuntu-toolchain-r/test
 add-apt-repository -y ppa:cybermax-dexter/mingw-w64-backport
 apt-get update
 apt-get -y build-dep wine-development libsdl2 libvulkan1
-apt-get -y install ccache gcc-9 g++-9 wget git gcc-mingw-w64 g++-mingw-w64
+apt-get -y install ccache gcc-10 g++-10 wget git gcc-mingw-w64 g++-mingw-w64
 apt-get -y install libxpresent-dev libjxr-dev libusb-1.0-0-dev libgcrypt20-dev libpulse-dev libudev-dev libsane-dev libv4l-dev libkrb5-dev libgphoto2-dev liblcms2-dev libcapi20-dev
 apt-get -y install libjpeg62-dev samba-dev
 apt-get -y install libpcsclite-dev libcups2-dev
 apt-get -y install python3-pip libxcb-xkb-dev python3-pymacaroons
-pip install pymacaroons
+apt install --reinstall python3-pymacaroons
 apt-get -y purge libvulkan-dev libvulkan1 libsdl2-dev libsdl2-2.0-0 libpcap0.8-dev libpcap0.8 --purge --autoremove
 apt-get -y clean
 apt-get -y autoclean
