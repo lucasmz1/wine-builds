@@ -92,12 +92,12 @@ echo deb '${CHROOT_MIRROR}' ${CHROOT_DISTRO}-security main universe >> /etc/apt/
 echo deb-src '${CHROOT_MIRROR}' ${CHROOT_DISTRO} main universe >> /etc/apt/sources.list
 echo deb-src '${CHROOT_MIRROR}' ${CHROOT_DISTRO}-updates main universe >> /etc/apt/sources.list
 echo deb-src '${CHROOT_MIRROR}' ${CHROOT_DISTRO}-security main universe >> /etc/apt/sources.list
-apt-get update
-apt-get -y upgrade
 git clone https://github.com/ecordell/pymacaroons.git
 cd ./pymacaroons/
 python3 setup.py install
 cd ..
+apt-get update
+apt-get -y upgrade
 apt-get -y install software-properties-common
 add-apt-repository -y ppa:ubuntu-toolchain-r/test
 add-apt-repository -y ppa:cybermax-dexter/mingw-w64-backport
