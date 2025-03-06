@@ -19,7 +19,7 @@ if ! command -v debootstrap 1>/dev/null || ! command -v perl 1>/dev/null; then
 fi
 
 # Keep in mind that although you can choose any version of Ubuntu/Debian
-# here, but this script has only been tested with Ubuntu 18.04 Bionic
+# here, but this script has only been tested with Ubuntu 20.04 focal
 export CHROOT_DISTRO="focal"
 export CHROOT_MIRROR="https://ftp.uni-stuttgart.de/ubuntu/"
 
@@ -121,8 +121,8 @@ wget -O vulkan-headers.tar.gz https://github.com/KhronosGroup/Vulkan-Headers/arc
 wget -O spirv-headers.tar.gz https://github.com/KhronosGroup/SPIRV-Headers/archive/${spirv_headers_version}.tar.gz
 wget -O libpcap.tar.gz https://www.tcpdump.org/release/libpcap-${libpcap_version}.tar.gz
 wget -O libxkbcommon.tar.xz https://xkbcommon.org/download/libxkbcommon-${libxkbcommon_version}.tar.xz
-if [ -d /usr/lib/i386-linux-gnu ]; then wget -O wine.deb https://dl.winehq.org/wine-builds/ubuntu/dists/bionic/main/binary-i386/wine-stable_4.0.3~bionic_i386.deb; fi
-if [ -d /usr/lib/x86_64-linux-gnu ]; then wget -O wine.deb https://dl.winehq.org/wine-builds/ubuntu/dists/bionic/main/binary-amd64/wine-stable_4.0.3~bionic_amd64.deb; fi
+if [ -d /usr/lib/i386-linux-gnu ]; then wget -O wine.deb https://dl.winehq.org/wine-builds/ubuntu/dists/focal/main/binary-i386/wine-stable_4.0.3~focal_i386.deb; fi
+if [ -d /usr/lib/x86_64-linux-gnu ]; then wget -O wine.deb https://dl.winehq.org/wine-builds/ubuntu/dists/focal/main/binary-amd64/wine-stable_4.0.3~focal_amd64.deb; fi
 git clone https://gitlab.winehq.org/wine/vkd3d.git
 tar xf sdl.tar.gz
 tar xf faudio.tar.gz
