@@ -23,7 +23,7 @@ jobs:
   # This workflow contains a single job called "build-stable"
   build-stable:
     # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -40,6 +40,7 @@ jobs:
           sudo sysctl -w kernel.unprivileged_userns_clone=1
           chmod +x build_wine.sh
           export WINE_VERSION="$(wget -q -O - "https://gitlab.winehq.org/wine/wine/-/raw/stable/VERSION" | tail -c +14)"
+          export EXPERIMENTAL_WOW64="true"
           WINE_BRANCH=vanilla ./build_wine.sh
           sha256sum *.tar.xz
       - uses: actions/upload-artifact@v4
