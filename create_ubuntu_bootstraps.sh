@@ -94,7 +94,10 @@ echo deb-src '${CHROOT_MIRROR}' ${CHROOT_DISTRO}-updates main universe >> /etc/a
 echo deb-src '${CHROOT_MIRROR}' ${CHROOT_DISTRO}-security main universe >> /etc/apt/sources.list
 apt-get update
 apt-get -y upgrade
-apt-get -y dist-upgrade
+git clone https://github.com/ecordell/pymacaroons.git
+cd ./pymacaroons/
+python3 setup.py install
+cd ..
 apt-get -y install software-properties-common
 add-apt-repository -y ppa:ubuntu-toolchain-r/test
 add-apt-repository -y ppa:cybermax-dexter/mingw-w64-backport
@@ -104,8 +107,7 @@ apt-get -y install ccache gcc-10 g++-10 wget git gcc-mingw-w64 g++-mingw-w64
 apt-get -y install libxpresent-dev libjxr-dev libusb-1.0-0-dev libgcrypt20-dev libpulse-dev libudev-dev libsane-dev libv4l-dev libkrb5-dev libgphoto2-dev liblcms2-dev libcapi20-dev
 apt-get -y install libjpeg62-dev samba-dev
 apt-get -y install libpcsclite-dev libcups2-dev
-apt-get -y install python3-pip libxcb-xkb-dev python3-pymacaroons
-apt install --reinstall python3-pymacaroons
+apt-get -y install python3-pip libxcb-xkb-dev
 apt-get -y purge libvulkan-dev libvulkan1 libsdl2-dev libsdl2-2.0-0 libpcap0.8-dev libpcap0.8 --purge --autoremove
 apt-get -y clean
 apt-get -y autoclean
